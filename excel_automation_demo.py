@@ -108,6 +108,9 @@ def process_maintenance_data():
         write_ws.write(cur_row, indexing[COST_CLASS], "관리비")
         write_ws.write(cur_row, indexing[MAINTENANCE_COST], maintenance_cost)
         write_ws.write(cur_row, indexing[REMAIN_BALANCE], int(cost) - maintenance_cost)
+        # 남은 금액 음수 나오는 경우 확인
+        if int(cost) - maintenance_cost < 0:
+            print(f"on row num: {cur_row}, there's a negative balance!")
 
     # 파일 저장
     write_wb.save(PRINT_FILENAME)

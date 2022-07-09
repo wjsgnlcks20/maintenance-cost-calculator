@@ -14,7 +14,10 @@ def generate_random_data():
         ws.write(0, i, col_name)
 
     for i in range(TEST_LIMIT):
-        ws.write(i + 1, 2, random.randrange(9000, 200000))
+        if i % 91 == 0:
+            ws.write(i + 1, 2, "")
+        else:
+            ws.write(i + 1, 2, random.randrange(9000, 200000))
         ws.write(i + 1, 3, building_names[random.randrange(0, len(building_names))])
 
     wb.save("데이터.xls")
